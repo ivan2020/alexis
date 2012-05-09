@@ -1,2 +1,7 @@
 .idea
 __pycache__
+app/cache
+app/config/parameters.yml
+app/logs
+vendor
+web/bundles

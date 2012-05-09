@@ -1,0 +1,4 @@
+RithisAlexisBundle:
+    resource: "@RithisAlexisBundle/Resources/config/routing.yml"
+    prefix:   /
+

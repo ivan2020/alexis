@@ -1,0 +1,3 @@
+RithisAlexisBundle_homepage:
+    pattern: /hello/{name}
+    defaults: { _controller: RithisAlexisBundle:Default:index }

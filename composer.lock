@@ -1,0 +1,38 @@
+{
+    "hash": "aa2d1652ffb18353df067a62089a9344",
+    "packages": [
+        {
+            "package": "sensio/generator-bundle",
+            "version": "dev-master",
+            "source-reference": "d570af6edd06f546f4f301300396c543aedc7f26"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "dev-master",
+            "source-reference": "e66a0bb32a584127c31a03a5c98f466890fb3fc8",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "dev-master",
+            "source-reference": "e66a0bb32a584127c31a03a5c98f466890fb3fc8"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "078905ed9507808b260d34fd8928e79e3a600d1d",
+            "alias-pretty-version": "1.9.x-dev",
+            "alias-version": "1.9.9999999.9999999-dev"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "078905ed9507808b260d34fd8928e79e3a600d1d"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ]
+}
