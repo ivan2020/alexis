@@ -1,9 +1,14 @@
 imports:
     - { resource: parameters.dist.yml }
     - { resource: parameters.yml }
+    - { resource: services.yml }
 
 framework:
     secret: %secret%
     charset: UTF-8
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     templating: { engines: ['twig'] }
+    form: true
+    csrf_protection: true
+    session:
+        auto_start: true

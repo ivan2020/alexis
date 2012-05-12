@@ -1,0 +1,21 @@
+parameters:
+    mongodb.connection.class: Mongo
+    mongodb.class: MongoDb
+    session.handler.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
+
+services:
+    mongodb.connection:
+        class: %mongodb.connection.class%
+
+    mongodb:
+        class: %mongodb.class%
+        factory_service: mongodb.connection
+        factory_method: selectDb
+        arguments:
+            - %mongo_database%
+
+    session.handler:
+        class: %session.handler.class%
+        arguments:
+            - @mongodb.connection
+            - { database: %mongo_database%, collection: sessions }

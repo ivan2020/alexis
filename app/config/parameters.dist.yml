@@ -1,2 +1,3 @@
 parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
+    mongo_database: alexis

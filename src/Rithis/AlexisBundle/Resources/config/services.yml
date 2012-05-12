@@ -1,0 +1,24 @@
+parameters:
+    alexis.form.choicelist.country.class: Rithis\AlexisBundle\Form\ChoiceList\CountryChoiceList
+    alexis.form.type.search_request.class: Rithis\AlexisBundle\Form\Type\SearchRequestType
+    alexis.form.search_request.class: Symfony\Component\Form\Form
+
+services:
+    alexis.form.choicelist.country:
+        class: %alexis.form.choicelist.country.class%
+        public: false
+        arguments:
+            - @mongodb
+
+    alexis.form.type.search_request:
+        class: %alexis.form.type.search_request.class%
+        public: false
+        arguments:
+            - @alexis.form.choicelist.country
+
+    alexis.form.search_request:
+        class: %alexis.form.search_request.class%
+        factory_service: form.factory
+        factory_method: create
+        arguments:
+            - @alexis.form.type.search_request

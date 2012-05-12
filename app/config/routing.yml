@@ -1,4 +1,3 @@
-RithisAlexisBundle:
+_alexis:
     resource: "@RithisAlexisBundle/Resources/config/routing.yml"
-    prefix:   /
-
+    prefix: /
