@@ -1,0 +1,10 @@
+<hotel id="{{ hotel._id }}" name="{{ hotel.name }}">
+    <![CDATA[{{ hotel.description }}]]>
+    {% if hotel.photos %}
+    <photos>
+        {% for photo in hotel.photos %}
+        <photo url="{{ photo.url }}" alt="{{ photo.alt }}" type="{{ photo.type }}" />
+        {% endfor %}
+    </photos>
+    {% endif %}
+</hotel>

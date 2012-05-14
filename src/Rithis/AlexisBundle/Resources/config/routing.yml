@@ -1,17 +1,4 @@
-alexis_new_searchrequests:
-    pattern: /search-requests/new
-    defaults: { _controller: RithisAlexisBundle:SearchRequests:newSearchRequests }
-    requirements:
-        _method: GET
-
-alexis_post_searchrequests:
-    pattern: /search-requests
-    defaults: { _controller: RithisAlexisBundle:SearchRequests:postSearchRequests }
-    requirements:
-        _method: POST
-
-alexis_get_searchrequest:
-    pattern: /search-requests/{hash}
-    defaults: { _controller: RithisAlexisBundle:SearchRequests:getSearchRequest }
-    requirements:
-        _method: GET
+_alexis_requests:
+    type: rest
+    resource: Rithis\AlexisBundle\Controller\RequestsController
+    name_prefix: alexis_

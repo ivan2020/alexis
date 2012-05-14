@@ -1,7 +1,8 @@
 {
     "require":{
         "symfony/symfony":"dev-master",
-        "sensio/generator-bundle":"dev-master"
+        "sensio/generator-bundle":"dev-master",
+        "friendsofsymfony/rest-bundle":"dev-master"
     },
     "autoload":{
         "psr-0":{

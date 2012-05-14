@@ -1,0 +1,12 @@
+<request id="{{ request._id }}">
+    <query>
+        {% for key, value in request.query %}
+            <{{ key }}>{{ value }}</{{ key }}>
+        {% endfor %}
+    </query>
+    <result>
+        {% for hotel in request.result %}
+            {% include "RithisAlexisBundle::hotel.xml.twig" %}
+        {% endfor %}
+    </result>
+</request>

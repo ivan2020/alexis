@@ -9,6 +9,12 @@ framework:
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     templating: { engines: ['twig'] }
     form: true
-    csrf_protection: true
-    session:
-        auto_start: true
+
+fos_rest:
+    view:
+        formats:
+            html: true
+            xml: true
+        templating_formats:
+            html: true
+            xml: true

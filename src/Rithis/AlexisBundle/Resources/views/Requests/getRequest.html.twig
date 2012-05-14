@@ -1,4 +1,4 @@
-{% for hotel in search_request.result %}
+{% for hotel in request.result %}
     <h1>{{ hotel.name }}</h1>
     <p>{{ hotel.description }}</p>
     {% if hotel.photos %}

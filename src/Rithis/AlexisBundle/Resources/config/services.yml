@@ -6,13 +6,11 @@ parameters:
 services:
     alexis.form.choicelist.country:
         class: %alexis.form.choicelist.country.class%
-        public: false
         arguments:
             - @mongodb
 
     alexis.form.type.search_request:
         class: %alexis.form.type.search_request.class%
-        public: false
         arguments:
             - @alexis.form.choicelist.country
 
