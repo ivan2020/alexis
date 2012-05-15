@@ -2,13 +2,19 @@
 
 namespace Rithis\AlexisBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
 
-class ImportHotelsCommand extends Command
+class ImportHotelsCommand extends ContainerAwareCommand
 {
+    private $textTags = array("company-id", "country", "admn-area", "sub-admn-area", "locality-name", "street",
+        "email", "url", "sub-locality-name", "house-add", "address-add");
+
+    private $intTags = array("house", "km", "build");
+
+    private $batchSize = 100;
+
     protected function configure()
     {
         $this->setName("alexis:import:hotels");
@@ -17,15 +23,125 @@ class ImportHotelsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = new Process(__DIR__ . "/../../../../console.py hotels");
-        $process->setTimeout(60 * 30);
-        $process->run(function ($type, $buffer) use ($output)
-        {
-            if ($type == Process::ERR) {
-                $output->getErrorOutput()->writeln($buffer);
-            } else {
-                $output->writeln($buffer);
+        if (is_readable('temp.xml')) {
+            $output->writeln('read');
+            $xml = file_get_contents('temp.xml');
+        } else {
+            $output->writeln('download');
+            $xml = file_get_contents('http://hotels.pegast.su/xml');
+            $output->writeln('save');
+            file_put_contents('temp.xml', $xml);
+        }
+
+        $dom = new \DOMDocument();
+        $dom->loadXML($xml);
+
+        $collection = $this->getContainer()->get('mongodb')->hotels;
+
+        $collection->drop();
+
+        $hotelsBatch = array();
+
+        foreach ($dom->getElementsByTagName('company') as $companyElement) {
+            $hotel = $this->parseHotel($companyElement);
+            $output->writeln($hotel['name']);
+
+            $hotelsBatch[] = $hotel;
+
+            if (count($hotelsBatch) == $this->batchSize) {
+                $collection->batchInsert($hotelsBatch);
+                $hotelsBatch = array();
             }
-        });
+        }
+
+        if (count($hotelsBatch) > 0) {
+            $collection->batchInsert($hotelsBatch);
+        }
+    }
+
+    private function parseHotel(\DOMElement $hotelElement)
+    {
+        $hotel = array(
+            'name' => trim($hotelElement->getElementsByTagName('name-ru')->item(0)->textContent)
+        );
+
+        if ($descriptionElement = $hotelElement->getElementsByTagName('description')->item(0)) {
+            $hotel['description'] = str_replace('&nbsp;', ' ', $descriptionElement->textContent);
+            $hotel['description'] = html_entity_decode($hotel['description'], ENT_NOQUOTES, 'UTF-8');
+            $hotel['description'] = trim($hotel['description']);
+        }
+
+        foreach ($this->textTags as $tag) {
+            if ($element = $hotelElement->getElementsByTagName($tag)->item(0)) {
+                $hotel[$tag] = trim($element->textContent);
+            }
+        }
+
+        foreach ($this->intTags as $tag) {
+            if ($element = $hotelElement->getElementsByTagName($tag)->item(0)) {
+                $hotel[$tag] = (int)$element->textContent;
+            }
+        }
+
+        $hotel['coordinates'] = array(
+            'lon' => (float)$hotelElement->getElementsByTagName('lon')->item(0)->textContent,
+            'lat' => (float)$hotelElement->getElementsByTagName('lat')->item(0)->textContent
+        );
+
+        $hotel['phones'] = array();
+        foreach ($hotelElement->getElementsByTagName('phone') as $phoneElement) {
+            $hotel['phones'][] = array(
+                'number' => $phoneElement->getElementsByTagName('number')->item(0)->textContent,
+                'type' => $phoneElement->getElementsByTagName('type')->item(0)->textContent
+            );
+        }
+        if (count($hotel['phones']) == 0) {
+            unset($hotel['phones']);
+        }
+
+        $hotel['photos'] = array();
+        foreach ($hotelElement->getElementsByTagName('photo') as $photoElement) {
+            $photo = array(
+                'url' => $photoElement->getAttribute('url'),
+                'alt' => $photoElement->getAttribute('alt'),
+                'type' => $photoElement->getAttribute('type')
+            );
+
+            // upload photo to S3
+
+            $hotel['photos'][] = $photo;
+        }
+        if (count($hotel['photos']) == 0) {
+            unset($hotel['photos']);
+        }
+
+        $hotel['features'] = array();
+        foreach ($hotelElement->getElementsByTagName('feature-boolean') as $featureElement) {
+            $hotel['features'][$featureElement->getAttribute('name')] = (bool)$featureElement->getAttribute('value');
+        }
+
+        foreach ($hotelElement->getElementsByTagName('feature-single') as $featureElement) {
+            $value = trim($featureElement->getAttribute('value'));
+
+            if (strlen($value) > 0) {
+                $hotel['features'][$featureElement->getAttribute('name')] = $value;
+            }
+        }
+
+        foreach ($hotelElement->getElementsByTagName('feature-enum-single') as $featureElement) {
+            $hotel['features'][$featureElement->getAttribute('name')] = $featureElement->getAttribute('value');
+        }
+
+        foreach ($hotelElement->getElementsByTagName('feature-enum-multiple') as $featureElement) {
+            $name = $featureElement->getAttribute('name');
+
+            if (!array_key_exists($name, $hotel['features'])) {
+                $hotel['features'][$name] = array();
+            }
+
+            $hotel['features'][$name][] = $featureElement->getAttribute('value');
+        }
+
+        return $hotel;
     }
 }
