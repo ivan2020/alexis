@@ -1,5 +1,5 @@
 {
-    "hash": "e78aae1a518a40b1ddff4300ff9a9213",
+    "hash": "d88af7bf617572ca603cb6ec97197b42",
     "packages": [
         {
             "package": "doctrine/common",
@@ -34,7 +34,7 @@
         {
             "package": "knplabs/gaufrette",
             "version": "dev-master",
-            "source-reference": "00dfffc6adff3b0a675cbb491e75d464b0da929d"
+            "source-reference": "7ac084fc256088a07add6883ca6dd72e4f5532ce"
         },
         {
             "package": "pear-aws/sdk",
