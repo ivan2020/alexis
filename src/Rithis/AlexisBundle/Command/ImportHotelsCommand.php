@@ -29,6 +29,7 @@ class ImportHotelsCommand extends ContainerAwareCommand
         $db = $this->getContainer()->get('mongodb');
         $collection = $db->hotels;
         $temporaryCollection = $collection->temporary;
+        $temporaryCollection->drop();
 
         $cachedData = array();
         foreach ($collection->find(array(), array('company-id' => 1, 'photos' => 1)) as $cache) {
