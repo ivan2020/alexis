@@ -5,3 +5,4 @@ parameters:
     aws_secret: aws_secret
     aws_bucket: aws_bucket
     alexis_hotels_photo_url: //s3-eu-west-1.amazonaws.com/rithis-alexis/%s
+    alexis_samo_token: alexis_samo_token
