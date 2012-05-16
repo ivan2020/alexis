@@ -1,5 +1,5 @@
 {
-    "hash": "a5b12bf0acb8d70633fec230d02aaa08",
+    "hash": "e78aae1a518a40b1ddff4300ff9a9213",
     "packages": [
         {
             "package": "doctrine/common",
@@ -17,6 +17,11 @@
             "source-reference": "441f2cd3c8aefc2d197dc94179e9be85717e26a5"
         },
         {
+            "package": "imagine/Imagine",
+            "version": "dev-master",
+            "source-reference": "v0.2.8"
+        },
+        {
             "package": "jms/metadata",
             "version": "dev-master",
             "source-reference": "95bfbfbcbe573ff9ed5fd33fa39cdfe0da27220d"
@@ -25,6 +30,15 @@
             "package": "jms/serializer-bundle",
             "version": "dev-master",
             "source-reference": "4ce47e7ce898d6a431433c33e194d3fed7244bd1"
+        },
+        {
+            "package": "knplabs/gaufrette",
+            "version": "dev-master",
+            "source-reference": "00dfffc6adff3b0a675cbb491e75d464b0da929d"
+        },
+        {
+            "package": "pear-aws/sdk",
+            "version": "1.5.5"
         },
         {
             "package": "sensio/framework-extra-bundle",

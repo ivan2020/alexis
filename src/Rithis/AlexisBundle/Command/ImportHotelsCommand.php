@@ -23,40 +23,45 @@ class ImportHotelsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (is_readable('temp.xml')) {
-            $output->writeln('read');
-            $xml = file_get_contents('temp.xml');
-        } else {
-            $output->writeln('download');
-            $xml = file_get_contents('http://hotels.pegast.su/xml');
-            $output->writeln('save');
-            file_put_contents('temp.xml', $xml);
-        }
-
         $dom = new \DOMDocument();
-        $dom->loadXML($xml);
+        $dom->loadXML(file_get_contents('http://hotels.pegast.su/xml'));
 
-        $collection = $this->getContainer()->get('mongodb')->hotels;
+        $db = $this->getContainer()->get('mongodb');
+        $collection = $db->hotels;
+        $temporaryCollection = $collection->temporary;
 
-        $collection->drop();
+        $cachedData = array();
+        foreach ($collection->find(array(), array('company-id' => 1, 'photos' => 1)) as $cache) {
+            $cachedData[$cache['company-id']] = $cache;
+        }
 
         $hotelsBatch = array();
 
         foreach ($dom->getElementsByTagName('company') as $companyElement) {
             $hotel = $this->parseHotel($companyElement);
-            $output->writeln($hotel['name']);
 
+            if (array_key_exists($hotel['company-id'], $cachedData)) {
+                $hotel = array_merge($hotel, $cachedData[$hotel['company-id']]);
+            }
+
+            $output->writeln($hotel['name']);
             $hotelsBatch[] = $hotel;
 
             if (count($hotelsBatch) == $this->batchSize) {
-                $collection->batchInsert($hotelsBatch);
+                $temporaryCollection->batchInsert($hotelsBatch);
                 $hotelsBatch = array();
             }
         }
 
         if (count($hotelsBatch) > 0) {
-            $collection->batchInsert($hotelsBatch);
+            $temporaryCollection->batchInsert($hotelsBatch);
         }
+
+        $collection->drop();
+        $this->getContainer()->get('mongodb.connection')->admin->command(array(
+            'renameCollection' => (string)$temporaryCollection,
+            'to' => (string)$collection
+        ));
     }
 
     private function parseHotel(\DOMElement $hotelElement)
@@ -99,20 +104,16 @@ class ImportHotelsCommand extends ContainerAwareCommand
             unset($hotel['phones']);
         }
 
-        $hotel['photos'] = array();
+        $hotel['photos_unprocessed'] = array();
         foreach ($hotelElement->getElementsByTagName('photo') as $photoElement) {
-            $photo = array(
+            $hotel['photos_unprocessed'][] = array(
                 'url' => $photoElement->getAttribute('url'),
                 'alt' => $photoElement->getAttribute('alt'),
                 'type' => $photoElement->getAttribute('type')
             );
-
-            // upload photo to S3
-
-            $hotel['photos'][] = $photo;
         }
-        if (count($hotel['photos']) == 0) {
-            unset($hotel['photos']);
+        if (count($hotel['photos_unprocessed']) == 0) {
+            unset($hotel['photos_unprocessed']);
         }
 
         $hotel['features'] = array();

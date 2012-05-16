@@ -19,3 +19,31 @@ services:
         arguments:
             - @mongodb.connection
             - { database: %mongo_database%, collection: sessions }
+
+    alexis.s3:
+        class: AmazonS3
+        arguments:
+            - { key: %aws_key%, secret: %aws_secret% }
+
+    alexis.s3.adapter:
+        class: Gaufrette\Adapter\AmazonS3
+        arguments:
+            - @alexis.s3
+            - %aws_bucket%
+
+    alexis.s3.adapter.acl_aware:
+        class: Gaufrette\Adapter\AclAwareAmazonS3
+        arguments:
+            - @alexis.s3.adapter
+            - @alexis.s3
+            - %aws_bucket%
+        calls:
+            - [ setAclConstant, [PUBLIC]]
+
+    alexis.fs:
+        class: Gaufrette\Filesystem
+        arguments:
+            - @alexis.s3.adapter.acl_aware
+
+    alexis.imagine:
+        class: Imagine\Gd\Imagine

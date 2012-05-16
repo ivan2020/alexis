@@ -2,11 +2,19 @@
     <h1>{{ hotel.name }}</h1>
     <p>{{ hotel.description }}</p>
     {% if hotel.photos %}
+    {% spaceless %}
         <p>
             {% for photo in hotel.photos %}
-                <a href="{{ photo.url}}" target="_blank"><img src="{{ photo.url }}" alt="{{ photo.alt }}" width="100" height="100" /></a>
+            <a href="{{ photo.original }}" target="_blank">
+                {% if loop.first %}
+                <img src="{{ photo.big_thumbnail }}" alt="{{ photo.alt }}" />
+                {% else %}
+                <img src="{{ photo.small_thumbnail }}" alt="{{ photo.alt }}" />
+                {% endif %}
+            </a>
             {% endfor %}
         </p>
+    {% endspaceless %}
     {% endif %}
     {% if not loop.last %}
         <hr />

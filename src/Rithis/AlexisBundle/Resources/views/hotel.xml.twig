@@ -3,7 +3,7 @@
     {% if hotel.photos %}
     <photos>
         {% for photo in hotel.photos %}
-        <photo url="{{ photo.url }}" alt="{{ photo.alt }}" type="{{ photo.type }}" />
+        <photo original="{{ photo.original }}" big-thumbnail="{{ photo.big_thumbnail }}"  small-thumbnail="{{ photo.small_thumbnail }}" alt="{{ photo.alt }}" type="{{ photo.type }}" />
         {% endfor %}
     </photos>
     {% endif %}

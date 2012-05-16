@@ -1,7 +1,7 @@
 imports:
+    - { resource: services.yml }
     - { resource: parameters.dist.yml }
     - { resource: parameters.yml }
-    - { resource: services.yml }
 
 framework:
     secret: %secret%
