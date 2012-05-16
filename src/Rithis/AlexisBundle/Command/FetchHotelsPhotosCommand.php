@@ -3,6 +3,7 @@
 namespace Rithis\AlexisBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Gaufrette\Filesystem;
@@ -15,6 +16,7 @@ class FetchHotelsPhotosCommand extends ContainerAwareCommand
     {
         $this->setName("alexis:hotels:fetch_photos");
         $this->setDescription("Fetch hotels photos from Pegas Touristik");
+        $this->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many hotels will be processed', 10);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -23,13 +25,18 @@ class FetchHotelsPhotosCommand extends ContainerAwareCommand
 
         $hotels = $collection->find(array('photos_unprocessed' => array('$exists' => true)));
 
+        $limit = $input->getOption('limit');
+        if ($limit > 0) {
+            $hotels = $hotels->limit($limit);
+        }
+
         foreach ($hotels as $hotel) {
             $photos = $this->fetchPhotos($hotel);
 
             $collection->update(array('_id' => $hotel['_id']), array(
                 '$set' => array('photos' => $photos),
                 '$unset' => array('photos_unprocessed' => 1)
-            ));die;
+            ));
         }
     }
 
