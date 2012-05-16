@@ -32,8 +32,8 @@ class ImportHotelsCommand extends ContainerAwareCommand
         $temporaryCollection->drop();
 
         $cachedData = array();
-        foreach ($collection->find(array(), array('company-id' => 1, 'photos' => 1)) as $cache) {
-            $cachedData[$cache['company-id']] = $cache;
+        foreach ($collection->find(array(), array('company_id' => 1, 'photos' => 1)) as $cache) {
+            $cachedData[$cache['company_id']] = $cache;
         }
 
         $hotelsBatch = array();
@@ -41,8 +41,8 @@ class ImportHotelsCommand extends ContainerAwareCommand
         foreach ($dom->getElementsByTagName('company') as $companyElement) {
             $hotel = $this->parseHotel($companyElement);
 
-            if (array_key_exists($hotel['company-id'], $cachedData)) {
-                $hotel = array_merge($hotel, $cachedData[$hotel['company-id']]);
+            if (array_key_exists($hotel['company_id'], $cachedData)) {
+                $hotel = array_merge($hotel, $cachedData[$hotel['company_id']]);
             }
 
             $output->writeln($hotel['name']);
@@ -79,13 +79,13 @@ class ImportHotelsCommand extends ContainerAwareCommand
 
         foreach ($this->textTags as $tag) {
             if ($element = $hotelElement->getElementsByTagName($tag)->item(0)) {
-                $hotel[$tag] = trim($element->textContent);
+                $hotel[str_replace('-', '_', $tag)] = trim($element->textContent);
             }
         }
 
         foreach ($this->intTags as $tag) {
             if ($element = $hotelElement->getElementsByTagName($tag)->item(0)) {
-                $hotel[$tag] = (int)$element->textContent;
+                $hotel[str_replace('-', '_', $tag)] = (int)$element->textContent;
             }
         }
 
