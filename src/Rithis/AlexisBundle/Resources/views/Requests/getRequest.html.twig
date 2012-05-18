@@ -1,33 +1,37 @@
-<style type="text/css">
-    div {
-        width: 372px;/* 300 + 4 + 64 + 4 */
-    }
-    a {
-        float: left;
-        margin: 0 4px 4px 0;
-    }
-</style>
-{% for hotel in request.result %}
-    <h1>{{ hotel.name }}</h1>
-    <p>{{ hotel.description }}</p>
-    {% if hotel.photos %}
-    {% spaceless %}
-        <div>
-            {% for photo in hotel.photos %}
-            {% if loop.index0 < 4 %}
-            <a href="{{ photo.original }}" target="_blank">
-                {% if loop.first %}
-                <img src="{{ photo.big_thumbnail }}" alt="{{ photo.alt }}" width="300" height="200"/>
-                {% else %}
-                <img src="{{ photo.small_thumbnail }}" alt="{{ photo.alt }}" width="64" height="64"/>
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    <style type="text/css">
+        div {
+            width: 372px;/* 300 + 4 + 64 + 4 */
+        }
+        a {
+            float: left;
+            margin: 0 4px 4px 0;
+        }
+    </style>
+    {% for hotel in request.result %}
+        <h1>{{ hotel.name }}</h1>
+        <p>{{ hotel.description }}</p>
+        {% if hotel.photos %}
+        {% spaceless %}
+            <div>
+                {% for photo in hotel.photos %}
+                {% if loop.index0 < 4 %}
+                <a href="{{ photo.original }}" target="_blank">
+                    {% if loop.first %}
+                    <img src="{{ photo.big_thumbnail }}" alt="{{ photo.alt }}" width="300" height="200"/>
+                    {% else %}
+                    <img src="{{ photo.small_thumbnail }}" alt="{{ photo.alt }}" width="64" height="64"/>
+                    {% endif %}
+                </a>
                 {% endif %}
-            </a>
-            {% endif %}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-    {% endif %}
-    {% if not loop.last %}
-        <hr />
-    {% endif %}
-{% endfor %}
+                {% endfor %}
+            </div>
+        {% endspaceless %}
+        {% endif %}
+        {% if not loop.last %}
+            <hr />
+        {% endif %}
+    {% endfor %}
+{% endblock %}

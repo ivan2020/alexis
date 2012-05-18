@@ -2,6 +2,7 @@ imports:
     - { resource: services.yml }
     - { resource: parameters.dist.yml }
     - { resource: parameters.yml }
+    - { resource: security.yml }
 
 framework:
     secret: %secret%
@@ -9,6 +10,8 @@ framework:
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     templating: { engines: ['twig'] }
     form: true
+    session:
+        auto_start: true
 
 fos_rest:
     view:
@@ -18,3 +21,9 @@ fos_rest:
         templating_formats:
             html: true
             xml: true
+
+rithis_loginza:
+    widget_id: %loginza_id%
+    secret_key: %loginza_secret%
+    is_secure: %loginza_secure%
+    redirect_url: /requests/new

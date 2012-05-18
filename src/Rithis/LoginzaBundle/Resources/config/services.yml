@@ -1,0 +1,15 @@
+services:
+    security.authentication.listener.loginza:
+        class:  Rithis\LoginzaBundle\DependencyInjection\Security\LoginzaListener
+        abstract: true
+        arguments:
+            - @security.context
+
+    security.authentication.loginza_entry_point:
+        class:  Rithis\LoginzaBundle\DependencyInjection\Security\LoginzaEntryPoint
+        abstract: true
+        arguments:
+            - @session
+
+    security.user.provider.loginza:
+        class:  Rithis\LoginzaBundle\DependencyInjection\Security\LoginzaUserProvider

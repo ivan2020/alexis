@@ -1,8 +1,15 @@
 parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
+
     mongo_database: alexis
+
     aws_key: aws_key
     aws_secret: aws_secret
     aws_bucket: aws_bucket
+
     alexis_hotels_photo_url: //s3-eu-west-1.amazonaws.com/rithis-alexis/%s
     alexis_samo_token: alexis_samo_token
+
+    loginza_id: loginza_id
+    loginza_secret: loginza_secret
+    loginza_secure: true
