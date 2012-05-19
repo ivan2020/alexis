@@ -1,0 +1,17 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    {% if is_granted('ROLE_USER') %}
+        {% render "RithisLoginzaBundle:Sessions:removeSession" %}
+    {% else %}
+        {% render "RithisLoginzaBundle:Sessions:newSessions" %}
+    {% endif %}
+
+    {% if ok %}
+        Данные сохранены!
+    {% endif %}
+    <form method="post" action="{{ path("profile_post_profile") }}">
+        {{ form_widget(form) }}
+        <p><input type="submit" value="Сохранить"></p>
+    </form>
+{% endblock %}
