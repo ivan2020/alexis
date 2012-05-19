@@ -1,0 +1,17 @@
+{% for keyitem,item in result %}
+    {% for keycontinent,continent in item %}
+        <p>{{ keycontinent }}&nbsp
+        {%for keycountry,country in continent%}
+            {{keycountry}}&nbsp
+                {%for keykurort,kurort in country%}
+                {{keykurort}}&nbsp
+                    <p>
+                    {%for price in kurort%}
+                        {{price.0}}&nbsp<img width="150px" src="{{price.1}}">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    {%endfor%}
+                    </p>
+                {%endfor%}
+        {%endfor%}
+        </p>
+    {%endfor%}
+{%endfor%}

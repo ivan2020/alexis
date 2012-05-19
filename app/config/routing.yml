@@ -1,3 +1,7 @@
+_travel:
+    type: rest
+    resource: "@RithisTravelBundle/Resources/config/routing.yml"
+
 _alexis:
     type: rest
     resource: "@RithisAlexisBundle/Resources/config/routing.yml"

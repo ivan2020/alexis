@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<travels>
+    {% for item in result %}
+        <travel>
+            <continent>{{ item.place }}</continent>
+            <country>{{ item.place }}</country>
+            <resort>{{ item.place }}</resort>
+            <price value="{{ item.price }}" currency="USD" />
+            <images>
+                <image src="{{ item.img }}" alt="" />
+            </images>
+        </travel>
+    {%endfor%}
+</travels>

@@ -1,0 +1,8 @@
+TravelBundle_homepage:
+    pattern:  /addtravel
+    defaults: { _controller: TravelBundle:Default:addFakeTravel }
+
+_travel_travels:
+    type: rest
+    resource: Rithis\TravelBundle\Controller\TravelsController
+    name_prefix: travel_
