@@ -1,3 +1,7 @@
+RithisProfileBundle:
+    type: rest
+    resource: "@RithisProfileBundle/Resources/config/routing.yml"
+
 _alexis:
     type: rest
     resource: "@RithisAlexisBundle/Resources/config/routing.yml"
