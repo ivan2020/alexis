@@ -1,0 +1,21 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+
+<div>
+    <h2>{{ user.nickname }}</h2>
+    <div>
+        <img src="//{{ user.avatar }}">
+    </div>
+    <p>Возраст: {{ user.age }}</p>
+    <p>Пол: {{ user.sex }}</p>
+    <p>Вес: {{ user.weight }}</p>
+    <p>Рост: {{ user.height }}</p>
+    <p>Тип: {{ user.role }}</p>
+    <p>О себе: {{ user.about_me }}</p>
+    {% if user.role=="ROLE_SPONSOR" %}<p>Бюджет: {{ user.budget }}</p>{% endif %}
+    <p>Временные рамки: {{ user.timerange }}</p>
+
+</div>
+
+{% endblock %}
