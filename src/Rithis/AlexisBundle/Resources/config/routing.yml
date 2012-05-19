@@ -2,3 +2,9 @@ _alexis_requests:
     type: rest
     resource: Rithis\AlexisBundle\Controller\RequestsController
     name_prefix: alexis_
+
+_alexis_default:
+    pattern: /
+    defaults: { _controller: RithisAlexisBundle:Default:default }
+    requirements:
+        _method: GET
