@@ -5,8 +5,12 @@
     <title>Alexis</title>
     {% include '::blocks/header/less.html.twig' %}
     {% include '::blocks/header/js.html.twig' %}
+    {% include '::blocks/header/css.html.twig' %}
 </head>
 <body>
-{% block body %}{% endblock %}
+    <div id="topbar"></div>
+    <div id="container">
+        {% block body %}{% endblock %}
+    </div>
 </body>
 </html>

@@ -1,0 +1,107 @@
+#sponsors, #free , #travels {
+    width: 308px;
+    margin: 0 20px 10px 0;
+    float:left;
+    h2 {
+        font-size: 32px;
+        font-weight: normal;
+        line-height: 22px;
+        sup{
+            font-size: 20px;
+        }
+    }
+}
+
+.person {
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #bbbbbb;
+    margin : 0 0 10px 0;
+    .details{
+        img{
+            float:left;
+        }
+        p{
+            margin: 0 0 0 10px;
+            float: left;
+            a{
+                color: #069;
+            }
+            &.name {
+                width: 182px;
+                font-size: 18px;
+            }
+            &.status {
+                background: #ff9;
+                border-radius: 10px;
+                padding: 0 5px;
+                margin: 5px 0 0 5px;
+            }
+        }
+    }
+    .when {
+        clear: both;
+        padding: 10px 0 0 0;
+        .duration {
+            width: 208px;
+            float: left;
+            background: #ccbfa6 url('/images/background/icons/man_background.png')  repeat-x;
+            span {
+                height: 18px;
+                background: #ccbfa6;
+                display: block;
+                &.from{
+                    background: #ccbfa6 url('/images/background/icons/left_arrow_man.png') right center no-repeat;
+                    float:left;
+                    padding: 2px 14px 0 7px;
+                    &.ready {
+                        background: #9afd67 url('/images/background/ready_grad.png') right center no-repeat;
+                    }
+                }
+                &.to{
+                    background: #ccbfa6 url('/images/background/icons/right_arrow_man.png') left center no-repeat;
+                    float:right;
+                    padding: 2px 7px 0 14px
+                }
+            }
+        }
+        .time {
+            margin: 0 0 0 2px;
+            height: 18px;
+            width: 70px;
+            float: left;
+            background: #e6c686;
+            padding: 2px 3px 0 3px;
+            text-align: center;
+            overflow: hidden;
+        }
+    }
+    .where {
+        clear: left;
+        margin: 10px 0 0 0;
+        height: 17px;
+        padding: 0 0 0 20px;
+        background: url('/images/icons/tooltip.png') center left no-repeat;
+    }
+    .action{
+        float: right;
+        text-decoration: none;
+        color: black;
+        border: 2px solid black;
+        height: 18px;
+        margin: 5px 0 0 0;
+        border-radius: 12px;
+        padding: 2px 10px 0 10px;
+        background: url('/images/background/action_button.png');
+        &.awaiting {
+            margin: 6px 0 1px 0;
+            background: none;
+            border: 1px solid #ccbfa6;
+            color: #282828;
+        }
+    }
+}
+
+#travels {
+    margin: 0 0 10px;
+}

@@ -1,5 +1,72 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    {{test}}
+    <h1>Совместные путешествия</h1>
+
+    <div id="sponsors">
+        <h2>Приглашаю <br>в путешествие <sup>20 264</sup></h2>
+        {% for i in range (1,3) %}
+            <div class="person">
+                <div class="details">
+                    <img src="http://cdn01.pegast.su/get/ee/9d/65/5e3a815c507622796429fe54e34b5a141671f115292aacf1a6cd6e7932/man.png" alt="" width="96" height="96">
+
+                    <p class="name">
+                        <a href="#">Александр<br>Мавроди</a>, 28
+                    </p>
+
+                    <p class="status">Приглашаю</p>
+
+                    <p class="status_details">девушку или парня</p>
+                </div>
+                <div class="when">
+                    <div class="duration">
+                        <span class="from">С 12 июня</span>
+                        <span class="to">по 12.06.2012</span>
+                    </div>
+                    <div class="time">на неделю</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="where">
+                    <span>Юго-Восточная Азия</span>
+                </div>
+                <a class="action" href="#">Присоединитья</a>
+
+                <div class="clear"></div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="free">
+        <h2>Составлю <br>компанию <sup>230 264</sup></h2>
+
+        {% for i in range (1,3) %}
+        <div class="person">
+            <div class="details">
+                <img src="http://dagestan.megaspravka.ru/images/users/photos/small/97896f83f25861f15cb2a538d8a6b056.jpg" alt="" width="96" height="96">
+                <p class="name">
+                    <a href="#">Светлана<br>Ашхабад</a>, 19
+                </p>
+                <p class="status">Присоединюсь</p>
+                <p class="status_details">к девушке или парню</p>
+            </div>
+            <div class="when">
+                <div class="duration">
+                    <span class="from ready">Готова ехать</span>
+                    <span class="to">по 12.06.2012</span>
+                </div>
+                <div class="time">на неделю</div>
+                <div class="clear"></div>
+            </div>
+            <div class="where">
+                <img src="blank.gif" class="flag flag-cz" alt="Czech Republic" />
+                <img src="blank.gif" class="flag flag-ru" alt="Russia" />
+            </div>
+            <a class="action awaiting" href="#">Ожидание</a>
+
+            <div class="clear"></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% include '::tours.html.twig' %}
 {% endblock %}

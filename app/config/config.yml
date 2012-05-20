@@ -27,3 +27,4 @@ rithis_loginza:
     secret_key: %loginza_secret%
     is_secure: %loginza_secure%
     redirect_url: /requests/new
+
