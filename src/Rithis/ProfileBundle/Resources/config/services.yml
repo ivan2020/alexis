@@ -1,0 +1,7 @@
+parameters:
+#    rithis_profile.example.class: Rithis\ProfileBundle\Example
+
+services:
+#    rithis_profile.example:
+#        class: %rithis_profile.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
