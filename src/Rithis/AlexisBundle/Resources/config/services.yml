@@ -20,3 +20,16 @@ services:
         factory_method: create
         arguments:
             - @alexis.form.type.search_request
+
+    security.user.provider.collection:
+        class: MongoCollection
+        factory_service: mongodb
+        factory_method: selectCollection
+        arguments:
+            - users
+
+    security.user.provider.alexis:
+        class: Rithis\AlexisBundle\Security\AlexisUserProvider
+        arguments:
+            - @security.user.provider.collection
+            - @service_container

@@ -14,3 +14,15 @@ loginza_remove_session:
     defaults: { _controller: RithisLoginzaBundle:Sessions:removeSession }
     requirements:
         _method: GET
+
+loginza_new_session_credentionals:
+    pattern: /sessions/current/credentionals/new
+    defaults: { _controller: RithisLoginzaBundle:Sessions:newSessionCredentionals }
+    requirements:
+        _method: GET
+
+loginza_post_session_credentionals:
+    pattern: /sessions/current/credentionals
+    defaults: { _controller: RithisLoginzaBundle:Sessions:postSessionCredentionals }
+    requirements:
+        _method: POST

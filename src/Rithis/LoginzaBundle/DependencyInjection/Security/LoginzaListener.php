@@ -7,15 +7,21 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginzaListener implements ListenerInterface
 {
     private $securityContext;
+    private $authenticationManager;
     private $config;
 
-    public function __construct(SecurityContextInterface $securityContext, array $config = array())
+    public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager, array $config = array())
     {
         $this->securityContext = $securityContext;
+        $this->authenticationManager = $authenticationManager;
         $this->config = $config;
     }
 
@@ -42,14 +48,20 @@ class LoginzaListener implements ListenerInterface
                 throw new AuthenticationException($response->error_message);
             }
 
-            $user = new User($response->name->first_name, $response->uid, array('ROLE_USER'));
+            $user = new User($response->identity, null, array('ROLE_USER'));
 
             $token = new LoginzaToken($user->getRoles());
             $token->setUser($user);
             $token->setAuthenticated(true);
             $token->setAttribute('loginza', $response);
 
-            $this->securityContext->setToken($token);
+            try {
+                $returnValue = $this->authenticationManager->authenticate($token);
+
+                return $this->securityContext->setToken($returnValue);
+            } catch (AuthenticationException $e) {
+                // you might log something here
+            }
         }
     }
 }

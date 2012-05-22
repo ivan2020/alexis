@@ -23,9 +23,8 @@ class LoginzaFactory implements SecurityFactoryInterface
     {
         $providerId = 'security.authentication.provider.loginza.' . $id;
         $container
-            ->setDefinition($providerId, new DefinitionDecorator('security.authentication.provider.dao'))
-            ->replaceArgument(0, new Reference($userProvider))
-            ->replaceArgument(2, $id)
+            ->setDefinition($providerId, new DefinitionDecorator('security.authentication.provider.loginza'))
+            ->addArgument(new Reference($userProvider))
         ;
 
         return $providerId;

@@ -19,15 +19,4 @@ class LoginzaToken extends AbstractToken
     {
         return '';
     }
-
-    public function getUid()
-    {
-        $userData = $this->getAttribute('loginza');
-
-        if (!isset($userData['uid'])) {
-            throw new \RuntimeException("User hasn't uid");
-        }
-
-        return $userData['uid'];
-    }
 }
