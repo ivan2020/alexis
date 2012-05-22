@@ -1,0 +1,37 @@
+Rithis\ProfilesBundle\Document\Profile:
+    id:
+        id: true
+        type: string
+        strategy: NONE
+    email:
+        type: string
+    passwordHash:
+        type: string
+    passwordSals:
+        type: string
+    nickname:
+        type: string
+    firstName:
+        type: string
+    lastName:
+        type: string
+    avatar:
+        type: string
+    birthday:
+        type: date
+    weight:
+        type: int
+    height:
+        type: int
+    sex:
+        type: string
+    about:
+        type: string
+    budget:
+        type: int
+    #identities:
+    #preferences:
+    #roles:
+    #photos:
+    #timerange:
+    #travels:
