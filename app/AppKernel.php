@@ -11,11 +11,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
             new Rithis\LoginzaBundle\RithisLoginzaBundle(),
             new Rithis\AlexisBundle\RithisAlexisBundle(),
-            new Rithis\ProfileBundle\RithisProfileBundle(),
+            new Rithis\ProfilesBundle\RithisProfilesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,4 @@
+_profile_profiles:
+    type: rest
+    resource: Rithis\ProfilesBundle\Controller\ProfilesController
+    name_prefix: profile_

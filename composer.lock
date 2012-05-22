@@ -1,10 +1,25 @@
 {
-    "hash": "d88af7bf617572ca603cb6ec97197b42",
+    "hash": "95f1d096e3c527ddec122f3acefa7eed",
     "packages": [
         {
             "package": "doctrine/common",
             "version": "dev-master",
             "source-reference": "717ea940ff8fa0854e84a2249edadfb998f91406"
+        },
+        {
+            "package": "doctrine/mongodb",
+            "version": "dev-master",
+            "source-reference": "71d862d27dad00b82f45f2c98f2000ecdd654ea6"
+        },
+        {
+            "package": "doctrine/mongodb-odm",
+            "version": "dev-master",
+            "source-reference": "36b376ef50088ec13cc372b896b01bdf96759409"
+        },
+        {
+            "package": "doctrine/mongodb-odm-bundle",
+            "version": "dev-master",
+            "source-reference": "e83bd0d310221e8325c8bff019a98991f1a1dae9"
         },
         {
             "package": "friendsofsymfony/rest",
