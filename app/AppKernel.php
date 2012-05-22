@@ -15,7 +15,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Rithis\LoginzaBundle\RithisLoginzaBundle(),
             new Rithis\AlexisBundle\RithisAlexisBundle(),
-            new Rithis\ProfileBundle\RithisProfileBundle(),
+            new Rithis\ProfilesBundle\RithisProfilesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

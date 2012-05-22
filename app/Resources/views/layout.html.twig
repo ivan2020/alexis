@@ -4,6 +4,15 @@
     <title>Alexis</title>
 </head>
 <body>
+
+{% if is_granted('ROLE_USER') %}
+    {% render "RithisLoginzaBundle:Sessions:removeSession" %}
+{% else %}
+    {% render "RithisLoginzaBundle:Sessions:newSessions" %}
+{% endif %}
+
+<hr />
+
 {% block body %}{% endblock %}
 </body>
 </html>

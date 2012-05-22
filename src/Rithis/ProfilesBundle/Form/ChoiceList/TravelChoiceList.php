@@ -1,6 +1,6 @@
 <?php
 
-namespace Rithis\ProfileBundle\Form\ChoiceList;
+namespace Rithis\ProfilesBundle\Form\ChoiceList;
 
 use Symfony\Component\Form\Extension\Core\ChoiceList\LazyChoiceList;
 use Symfony\Component\Form\Extension\Core\ChoiceList\SimpleChoiceList;

@@ -1,12 +1,6 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    {% if is_granted('ROLE_USER') %}
-        {% render "RithisLoginzaBundle:Sessions:removeSession" %}
-    {% else %}
-        {% render "RithisLoginzaBundle:Sessions:newSessions" %}
-    {% endif %}
-
     <form method="post" action="{{ path("alexis_post_requests") }}">
         {{ form_widget(form) }}
         <p><input type="submit" value="Search"></p>

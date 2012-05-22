@@ -1,10 +1,10 @@
-RithisProfileBundle:
-    type: rest
-    resource: "@RithisProfileBundle/Resources/config/routing.yml"
-
 _alexis:
     type: rest
     resource: "@RithisAlexisBundle/Resources/config/routing.yml"
 
 _loginza:
     resource: "@RithisLoginzaBundle/Resources/config/routing.yml"
+
+_profile:
+    type: rest
+    resource: "@RithisProfilesBundle/Resources/config/routing.yml"
