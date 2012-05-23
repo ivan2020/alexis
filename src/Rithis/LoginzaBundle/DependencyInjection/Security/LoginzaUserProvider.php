@@ -4,7 +4,6 @@ namespace Rithis\LoginzaBundle\DependencyInjection\Security;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class LoginzaUserProvider implements UserProviderInterface
 {

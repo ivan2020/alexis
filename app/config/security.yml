@@ -1,13 +1,21 @@
 security:
     providers:
         loginza:
-            id: security.user.provider.loginza
+            id: security.user.provider.profiles
 
     access_control:
+        # anonymous
         - { path: ^/requests/new$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_profiler, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^, roles: ROLE_USER }
+        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # not registered
+        - { path: ^/session, roles: ROLE_USER }
+        - { path: ^/profile/credentials, roles: ROLE_USER }
+
+        # registered
+        - { path: ^, roles: ROLE_REGISTERED }
 
     firewalls:
         secured_area:
@@ -15,5 +23,12 @@ security:
             anonymous: ~
             loginza: ~
             logout:
-                path: /sessions/current
-                target: /requests/new
+                path: /session
+                target: /
+
+    role_hierarchy:
+        ROLE_SPONSOR: ROLE_REGISTERED
+        ROLE_FREE: ROLE_REGISTERED
+
+    encoders:
+        Rithis\ProfilesBundle\Document\Profile: sha512

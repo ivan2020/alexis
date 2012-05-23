@@ -3,6 +3,7 @@
         "symfony/symfony":"dev-master",
         "sensio/generator-bundle":"dev-master",
         "friendsofsymfony/rest-bundle":"dev-master",
+        "doctrine/mongodb-odm-bundle":"dev-master",
         "knplabs/gaufrette":"dev-master",
         "imagine/Imagine":"dev-master",
         "pear-aws/sdk":"*"

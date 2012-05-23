@@ -3,10 +3,6 @@
 namespace Rithis\LoginzaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
-
-use FOS\RestBundle\View\View;
 
 class SessionsController extends Controller
 {
@@ -23,5 +19,9 @@ class SessionsController extends Controller
     public function removeSessionAction()
     {
         return $this->render('RithisLoginzaBundle:Sessions:removeSession.html.twig');
+    }
+
+    public function deleteSessionAction()
+    {
     }
 }

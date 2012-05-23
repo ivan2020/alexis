@@ -1,0 +1,12 @@
+<profile id="{{ profile.id }}" email="{{ profile.email }}">
+    <name first="{{ profile.firstName }}" last="{{ profile.lastName }}" nickname="{{ profile.nickname }}" />
+    <avatar url="{{ profile.avatar }}" />
+    <sex>{{ profile.sex }}</sex>
+    <birthday>{{ profile.birthday|date('c') }}</birthday>
+    <weight value="{{ profile.weight }}" units="kg" />
+    <height value="{{ profile.height }}" units="cm" />
+    <about>{{ profile.about }}</about>
+    {% if profile.isSponsor %}
+        <budget value="{{ profile.budget }}" units="USD" />
+    {% endif %}
+</profile>

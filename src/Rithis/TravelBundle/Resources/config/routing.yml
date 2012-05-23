@@ -1,6 +1,6 @@
 TravelBundle_homepage:
     pattern:  /addtravel
-    defaults: { _controller: TravelBundle:Default:addFakeTravel }
+    defaults: { _controller: RithisTravelBundle:Travels:addFakeTravel }
 
 _travel_travels:
     type: rest

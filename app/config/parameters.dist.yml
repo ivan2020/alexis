@@ -1,6 +1,7 @@
 parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
+    mongo_server: mongodb://localhost:27017
     mongo_database: alexis
 
     aws_key: aws_key

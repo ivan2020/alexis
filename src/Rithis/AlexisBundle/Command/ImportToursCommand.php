@@ -128,6 +128,7 @@ class ImportToursCommand extends ContainerAwareCommand
     private function fetchCurrentTimestamp()
     {
         $xml = simplexml_load_file($this->generateUrl('currentstamp'));
+
         return (string)$xml->Data->currentstamp->attributes()->stamp;
     }
 
@@ -171,6 +172,7 @@ class ImportToursCommand extends ContainerAwareCommand
         $float = function ($x) { return (float)$x; };
         $date = function ($x) {
             $time = strptime($x, '%FT%T');
+
             return new \MongoDate(mktime($time['tm_hour'], $time['tm_min'], $time['tm_sec'], $time['tm_mon'] + 1, $time['tm_mday'], $time['tm_year'] + 1900));
         };
 
