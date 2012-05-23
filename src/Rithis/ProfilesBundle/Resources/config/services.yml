@@ -1,0 +1,20 @@
+parameters:
+    profiles.form.choicelist.travel.class: Rithis\ProfilesBundle\Form\ChoiceList\TravelChoiceList
+    profiles.form.type.profile.class: Rithis\ProfilesBundle\Form\Type\ProfileType
+
+services:
+    profiles.form.choicelist.travel:
+        class: %profiles.form.choicelist.travel.class%
+        arguments:
+            - @mongodb
+
+    profiles.form.type.profile:
+        class: %profiles.form.type.profile.class%
+        arguments:
+            - @profiles.form.choicelist.travel
+
+    security.user.provider.profiles:
+        class: Rithis\ProfilesBundle\Security\UserProvider
+        arguments:
+            - @doctrine.odm.mongodb.document_manager
+            - RithisProfilesBundle:Profile

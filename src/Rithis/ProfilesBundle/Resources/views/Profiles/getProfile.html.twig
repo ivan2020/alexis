@@ -1,0 +1,17 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+<div>
+    <h2>{{ profile.nickname }}</h2>
+    <div>
+        <img src="{{ profile.avatar }}">
+    </div>
+    <p>Возраст: {{ profile.age }}</p>
+    <p>Пол: {{ profile.sex }}</p>
+    <p>Вес: {{ profile.weight }}</p>
+    <p>Рост: {{ profile.height }}</p>
+    <p>Тип: {% if profile.isSponsor %}спонсор{% else %}халявщик{% endif %}</p>
+    <p>О себе: {{ profile.about }}</p>
+    {% if profile.isSponsor %}<p>Бюджет: {{ profile.budget }}</p>{% endif %}
+</div>
+{% endblock %}

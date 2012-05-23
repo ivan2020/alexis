@@ -6,3 +6,4 @@ app/logs
 vendor
 web/bundles
 composer.phar
+php-cs-fixer.phar

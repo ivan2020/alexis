@@ -8,9 +8,15 @@
     {% include '::blocks/header/css.html.twig' %}
 </head>
 <body>
-    <div id="topbar"></div>
-    <div id="container">
-        {% block body %}{% endblock %}
-    </div>
+<div id="topbar">
+    {% if is_granted('ROLE_USER') %}
+    {% render "RithisLoginzaBundle:Sessions:removeSession" %}
+    {% else %}
+    {% render "RithisLoginzaBundle:Sessions:newSessions" %}
+    {% endif %}
+</div>
+<div id="container">
+    {% block body %}{% endblock %}
+</div>
 </body>
 </html>

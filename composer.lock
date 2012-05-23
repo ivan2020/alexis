@@ -1,10 +1,32 @@
 {
-    "hash": "d88af7bf617572ca603cb6ec97197b42",
+    "hash": "95f1d096e3c527ddec122f3acefa7eed",
     "packages": [
         {
             "package": "doctrine/common",
             "version": "dev-master",
-            "source-reference": "717ea940ff8fa0854e84a2249edadfb998f91406"
+            "source-reference": "f8e2aadf388ab1e6b36263a73d5e314c477f96c7"
+        },
+        {
+            "package": "doctrine/common",
+            "version": "dev-master",
+            "source-reference": "f8e2aadf388ab1e6b36263a73d5e314c477f96c7",
+            "alias-pretty-version": "2.3.x-dev",
+            "alias-version": "2.3.9999999.9999999-dev"
+        },
+        {
+            "package": "doctrine/mongodb",
+            "version": "dev-master",
+            "source-reference": "71d862d27dad00b82f45f2c98f2000ecdd654ea6"
+        },
+        {
+            "package": "doctrine/mongodb-odm",
+            "version": "dev-master",
+            "source-reference": "36b376ef50088ec13cc372b896b01bdf96759409"
+        },
+        {
+            "package": "doctrine/mongodb-odm-bundle",
+            "version": "dev-master",
+            "source-reference": "30211cc1eb2ec45d8028ac4663d00149a9abc913"
         },
         {
             "package": "friendsofsymfony/rest",
@@ -14,7 +36,7 @@
         {
             "package": "friendsofsymfony/rest-bundle",
             "version": "dev-master",
-            "source-reference": "67158a05a76c469eef49f66dd22806465f03629f"
+            "source-reference": "1fd512952a31f6db90be63636fab73369994737a"
         },
         {
             "package": "imagine/Imagine",
@@ -24,7 +46,7 @@
         {
             "package": "jms/metadata",
             "version": "dev-master",
-            "source-reference": "95bfbfbcbe573ff9ed5fd33fa39cdfe0da27220d"
+            "source-reference": "a2ae95448bd13bcfbba5f7fead40b379a84da02d"
         },
         {
             "package": "jms/serializer-bundle",
@@ -53,33 +75,33 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "58b924533a15364226bf8321706b467b4a86ba07"
+            "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f"
         },
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "58b924533a15364226bf8321706b467b4a86ba07",
+            "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "58b924533a15364226bf8321706b467b4a86ba07",
+            "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "e28663efd83d76ee36bf9e8a790f75bd880abbf2",
+            "source-reference": "573a36097146b319e5fb36546a0377c7440bbfe3"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "573a36097146b319e5fb36546a0377c7440bbfe3",
             "alias-pretty-version": "1.8.x-dev",
             "alias-version": "1.8.9999999.9999999-dev"
-        },
-        {
-            "package": "twig/twig",
-            "version": "dev-master",
-            "source-reference": "e28663efd83d76ee36bf9e8a790f75bd880abbf2"
         }
     ],
     "packages-dev": null,
@@ -91,6 +113,7 @@
         "symfony/symfony": 20,
         "sensio/generator-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
+        "doctrine/mongodb-odm-bundle": 20,
         "knplabs/gaufrette": 20,
         "imagine/imagine": 20
     }

@@ -10,6 +10,7 @@ framework:
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     templating: { engines: ['twig'] }
     form: true
+    validation: true
     session:
         auto_start: true
 
@@ -26,5 +27,13 @@ rithis_loginza:
     widget_id: %loginza_id%
     secret_key: %loginza_secret%
     is_secure: %loginza_secure%
-    redirect_url: /requests/new
+    redirect_url: /profile/credentials/check
 
+doctrine_mongodb:
+    connections:
+        default:
+            server: %mongo_server%
+    default_database: %mongo_database%
+    document_managers:
+        default:
+            auto_mapping: true

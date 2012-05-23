@@ -1,0 +1,9 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    <form method="post" action="{{ path("profile_put_profile") }}">
+        <input type="hidden" name="_method" value="put" />
+        {{ form_widget(form) }}
+        <p><input type="submit" value="Сохранить"></p>
+    </form>
+{% endblock %}

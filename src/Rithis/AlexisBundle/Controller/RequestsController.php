@@ -6,12 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Component\Form\FormInterface;
-
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\RouteRedirectView;
 use FOS\Rest\Util\Codes;
-
-use Rithis\AlexisBundle\Form\Type\SearchRequestType;
 
 class RequestsController extends Controller
 {
@@ -71,9 +68,11 @@ class RequestsController extends Controller
     {
         if ($request->getRequestFormat() == 'html') {
             $form = $form ?: $this->get('alexis.form.search_request');
+
             return array('form' => $form);
         } else {
             $countries = $this->get('alexis.form.choicelist.country')->getValues();
+
             return array('countries' => $countries);
         }
     }
