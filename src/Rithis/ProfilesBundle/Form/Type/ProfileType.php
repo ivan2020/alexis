@@ -4,7 +4,6 @@ namespace Rithis\ProfilesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Rithis\ProfilesBundle\Form\ChoiceList\TravelChoiceList;
 
 class ProfileType extends AbstractType

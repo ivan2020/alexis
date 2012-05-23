@@ -4,13 +4,7 @@ namespace Rithis\ProfilesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
-use Symfony\Component\Form\FormInterface;
-
 use FOS\RestBundle\View\View;
-use FOS\RestBundle\View\RouteRedirectView;
-use FOS\Rest\Util\Codes;
-
 use Rithis\ProfilesBundle\Form\Type\RegistrationType;
 use Rithis\ProfilesBundle\Document\Profile;
 

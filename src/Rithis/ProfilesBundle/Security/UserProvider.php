@@ -4,7 +4,6 @@ namespace Rithis\ProfilesBundle\Security;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\DependencyInjection\Container;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Rithis\ProfilesBundle\Document\Profile;
 

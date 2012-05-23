@@ -5,8 +5,6 @@ namespace Rithis\ProfilesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
-use Symfony\Component\Form\FormInterface;
-
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\RouteRedirectView;
 use FOS\Rest\Util\Codes;
@@ -29,6 +27,7 @@ class ProfilesController extends Controller
 
         if ($form->isValid()) {
             $this->get('doctrine.odm.mongodb.document_manager')->flush();
+
             return RouteRedirectView::create('profile_edit_profile');
         }
 
@@ -61,9 +60,11 @@ class ProfilesController extends Controller
     {
         if ($this->getRequest()->getRequestFormat() == 'html') {
             $form = $this->getForm();
+
             return array('form' => $form);
         } else {
             $user = $this->getUser();
+
             return array('profile' => $user);
         }
     }
