@@ -2,3 +2,9 @@ _profile_profiles:
     type: rest
     resource: Rithis\ProfilesBundle\Controller\ProfilesController
     name_prefix: profile_
+
+_profile_credentials:
+    type: rest
+    resource: Rithis\ProfilesBundle\Controller\CredentialsController
+    parent: _profile_profiles
+    name_prefix: profile_

@@ -1,13 +1,19 @@
 security:
     providers:
         loginza:
-            id: security.user.provider.alexis
+            id: security.user.provider.profiles
 
     access_control:
+        # anonymous
         - { path: ^/requests/new$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_profiler, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/sessions, roles: ROLE_USER }
+
+        # not registered
+        - { path: ^/session, roles: ROLE_USER }
+        - { path: ^/profile/credentials, roles: ROLE_USER }
+
+        # registered
         - { path: ^, roles: ROLE_REGISTERED }
 
     firewalls:
@@ -16,7 +22,7 @@ security:
             anonymous: ~
             loginza: ~
             logout:
-                path: /sessions/current
+                path: /session
                 target: /requests/new
 
     role_hierarchy:
@@ -24,4 +30,4 @@ security:
         ROLE_FREE: ROLE_REGISTERED
 
     encoders:
-        Rithis\AlexisBundle\Security\User: sha512
+        Rithis\ProfilesBundle\Document\Profile: sha512

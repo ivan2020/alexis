@@ -1,28 +1,4 @@
-loginza_post_sessions:
-    pattern: /sessions
-    defaults: { _controller: RithisLoginzaBundle:Sessions:postSessions }
-    requirements:
-        _method: POST
-
-loginza_delete_session:
-    pattern: /sessions/current
-    requirements:
-        _method: DELETE
-
-loginza_remove_session:
-    pattern: /sessions/current/remove
-    defaults: { _controller: RithisLoginzaBundle:Sessions:removeSession }
-    requirements:
-        _method: GET
-
-loginza_new_session_credentionals:
-    pattern: /sessions/current/credentionals/new
-    defaults: { _controller: RithisLoginzaBundle:Sessions:newSessionCredentionals }
-    requirements:
-        _method: GET
-
-loginza_post_session_credentionals:
-    pattern: /sessions/current/credentionals
-    defaults: { _controller: RithisLoginzaBundle:Sessions:postSessionCredentionals }
-    requirements:
-        _method: POST
+_loginza_sessions:
+    type: rest
+    resource: Rithis\LoginzaBundle\Controller\SessionsController
+    name_prefix: loginza_

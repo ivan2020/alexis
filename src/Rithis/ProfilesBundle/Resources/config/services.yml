@@ -12,3 +12,9 @@ services:
         class: %profiles.form.type.profile.class%
         arguments:
             - @profiles.form.choicelist.travel
+
+    security.user.provider.profiles:
+        class: Rithis\ProfilesBundle\Security\UserProvider
+        arguments:
+            - @doctrine.odm.mongodb.document_manager
+            - RithisProfilesBundle:Profile

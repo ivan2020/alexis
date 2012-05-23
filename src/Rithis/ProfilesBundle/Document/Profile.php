@@ -2,7 +2,9 @@
 
 namespace Rithis\ProfilesBundle\Document;
 
-class Profile
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class Profile implements UserInterface
 {
     /**
      * @var string
@@ -52,7 +54,7 @@ class Profile
     /**
      * @var int
      */
-    protected $weigth;
+    protected $weight;
 
     /**
      * @var int
@@ -73,6 +75,20 @@ class Profile
      * @var int
      */
     protected $budget;
+
+    /**
+     * @var array
+     */
+    protected $identities = array();
+
+    /**
+     * @var array
+     */
+    protected $roles = array();
+
+    public $password;
+    public $role;
+    public $license;
 
     public function setId($id)
     {
@@ -112,6 +128,16 @@ class Profile
     public function getPasswordSalt()
     {
         return $this->passwordSalt;
+    }
+
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+    }
+
+    public function getNickname()
+    {
+        return $this->nickname;
     }
 
     public function setFirstName($firstName)
@@ -154,14 +180,14 @@ class Profile
         return $this->birthday;
     }
 
-    public function setWeigth($weigth)
+    public function setWeight($weigth)
     {
-        $this->weigth = $weigth;
+        $this->weight = $weigth;
     }
 
-    public function getWeigth()
+    public function getWeight()
     {
-        return $this->weigth;
+        return $this->weight;
     }
 
     public function setHeight($height)
@@ -202,5 +228,98 @@ class Profile
     public function getBudget()
     {
         return $this->budget;
+    }
+
+    public function addIdentity($identity)
+    {
+        $this->identities[] = $identity;
+    }
+
+    public function setIdentities(array $identities)
+    {
+        $this->identities = $identities;
+    }
+
+    public function getIdentities()
+    {
+        return $this->identities;
+    }
+
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function toArray()
+    {
+        return array(
+            'nickname' => $this->nickname,
+            'sex' => $this->sex,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'about' => $this->about,
+            'birthday' => $this->birthday,
+        );
+    }
+
+    public function loadFromArray(array $data)
+    {
+        if (isset($data['nickname'])) {
+            $this->setNickname($data['nickname']);
+        }
+        if (isset($data['sex'])) {
+            $this->setSex($data['sex']);
+        }
+        if (isset($data['firstName'])) {
+            $this->setFirstName($data['firstName']);
+        }
+        if (isset($data['lastName'])) {
+            $this->setLastName($data['lastName']);
+        }
+        if (isset($data['about'])) {
+            $this->setAbout($data['about']);
+        }
+        if (isset($data['birthday'])) {
+            $this->setBirthday($data['birthday']);
+        }
+    }
+
+    public function isSponsor()
+    {
+        return in_array('ROLE_SPONSOR', $this->roles);
+    }
+
+    public function isFree()
+    {
+        return in_array('ROLE_FREE', $this->roles);
+    }
+
+    public function getUsername()
+    {
+        return strlen($this->nickname) > 0 ? $this->nickname : reset($this->identities);
+    }
+
+    public function getPassword()
+    {
+        return $this->passwordHash;
+    }
+
+    public function getSalt()
+    {
+        return $this->passwordSalt;
+    }
+
+    public function eraseCredentials()
+    {
     }
 }

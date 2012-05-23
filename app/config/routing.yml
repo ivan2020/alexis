@@ -3,6 +3,7 @@ _alexis:
     resource: "@RithisAlexisBundle/Resources/config/routing.yml"
 
 _loginza:
+    type: rest
     resource: "@RithisLoginzaBundle/Resources/config/routing.yml"
 
 _profile:

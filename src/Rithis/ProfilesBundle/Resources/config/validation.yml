@@ -1,0 +1,52 @@
+Rithis\ProfilesBundle\Document\Profile:
+    properties:
+        email:
+            - NotBlank:
+                groups: [credentials]
+            - Email:
+                groups: [credentials]
+        password:
+            - NotBlank:
+                groups: [credentials]
+        nickname:
+            - NotBlank: ~
+            - MinLength:
+                limit: 5
+                groups: [credentials]
+        firstName:
+            - MinLength:
+                limit: 2
+                groups: [credentials]
+        lastName:
+            - MinLength:
+                limit: 2
+                groups: [credentials]
+        avatar:
+            - Url: ~
+        birthday:
+            - Date:
+                groups: [credentials]
+        weight:
+            - Type: int
+        height:
+            - Type: int
+        sex:
+            - Choice:
+                choices: ['M', 'F']
+                groups: [credentials]
+        about:
+            - MinLength:
+                limit: 16
+                groups: [credentials]
+        budget:
+            - Type: int
+            - Min: 500
+        role:
+            - NotBlank:
+                groups: [credentials]
+            - Choice:
+                choices: ['ROLE_SPONSOR', 'ROLE_FREE']
+                groups: [credentials]
+        license:
+            - "True":
+                groups: [credentials]
