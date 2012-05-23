@@ -5,7 +5,7 @@ namespace Rithis\ProfilesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\View\View;
-use Rithis\ProfilesBundle\Form\Type\RegistrationType;
+use Rithis\ProfilesBundle\Form\Type\CredentialsType;
 use Rithis\ProfilesBundle\Document\Profile;
 
 class CredentialsController extends Controller
@@ -33,7 +33,7 @@ class CredentialsController extends Controller
             'birthday' => isset($loginzaData->dob) ? \DateTime::createFromFormat('Y-m-d', $loginzaData->dob) : null,
         ));
 
-        $form = $this->createForm(new RegistrationType(), $profile);
+        $form = $this->createForm(new CredentialsType(), $profile);
 
         return $this->render('RithisProfilesBundle:Credentials:newCredentials.html.twig', array(
             'form' => $form->createView(),
@@ -42,7 +42,7 @@ class CredentialsController extends Controller
 
     public function putCredentialsAction(Request $request)
     {
-        $form = $this->createForm(new RegistrationType(), $this->getUser(), array(
+        $form = $this->createForm(new CredentialsType(), $this->getUser(), array(
             'validation_groups' => 'credentials',
         ));
 
@@ -50,12 +50,8 @@ class CredentialsController extends Controller
         if ($form->isValid()) {
             $user = $form->getData();
 
-            $salt = md5(time());
             $encoder = $this->get('security.encoder_factory')->getEncoder($user);
-
-            $user->setPasswordSalt($salt);
-            $user->setPasswordHash($encoder->encodePassword($user->password, $salt));
-            $user->addRole($user->role);
+            $user->mergeFormData($encoder);
 
             $this->get('doctrine.odm.mongodb.document_manager')->flush();
 

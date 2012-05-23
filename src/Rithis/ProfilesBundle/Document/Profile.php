@@ -3,6 +3,7 @@
 namespace Rithis\ProfilesBundle\Document;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 class Profile implements UserInterface
 {
@@ -258,6 +259,14 @@ class Profile implements UserInterface
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function mergeFormData(PasswordEncoderInterface $encoder)
+    {
+        $salt = md5(time());
+        $this->setPasswordSalt($salt);
+        $this->setPasswordHash($encoder->encodePassword($this->password, $salt));
+        $this->addRole($this->role);
     }
 
     public function toArray()

@@ -4,6 +4,7 @@ namespace Rithis\ProfilesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Rithis\ProfilesBundle\Document\Profile;
 use Rithis\ProfilesBundle\Form\ChoiceList\TravelChoiceList;
 
 class ProfileType extends AbstractType
@@ -17,7 +18,7 @@ class ProfileType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $this->add($builder, $options, 'nickname');
+        $builder->add('nickname');
 
         $this->add($builder, $options, 'firstName');
 
@@ -39,7 +40,7 @@ class ProfileType extends AbstractType
 
         $this->add($builder, $options, 'about', 'textarea');
 
-        if ($options['data']->isSponsor()) {
+        if ($options['data'] instanceof Profile && $options['data']->isSponsor()) {
             $this->add($builder, $options, 'budget', 'integer');
         }
 

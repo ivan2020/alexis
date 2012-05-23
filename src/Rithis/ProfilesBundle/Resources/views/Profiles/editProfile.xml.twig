@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<form-data>
+{% extends "RithisAlexisBundle:Form:template.xml.twig" %}
+{% import "RithisAlexisBundle:Form:form.xml.twig" as form %}
+
+{% block fields %}
+    {{ form.string('nickname', profile.nickname, false) }}
+    {{ form.string('firstName', profile.firstName) }}
+    {{ form.string('lastName', profile.lastName) }}
+    {{ form.url('avatar', profile.avatar) }}
+    {{ form.date('birthday', profile.birthday.format('c')) }}
+    {{ form.int('weight', profile.weight) }}
+    {{ form.int('height', profile.height) }}
+    {{ form.choice('sex', ['M', 'F']) }}
+    {{ form.string('about') }}
+
+    <!-- if sponsor -->
+    {{ form.int('budget') }}
+{% endblock %}
+
+{% block object %}
     {% include "RithisProfilesBundle:Profiles:profile.xml.twig" %}
-</form-data>
+{% endblock %}

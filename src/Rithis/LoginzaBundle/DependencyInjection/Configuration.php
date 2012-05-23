@@ -17,6 +17,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('widget_id')->isRequired()->end()
                 ->scalarNode('secret_key')->isRequired()->end()
                 ->scalarNode('redirect_url')->isRequired()->end()
+                ->scalarNode('login_url')->isRequired()->end()
                 ->booleanNode('is_secure')->defaultTrue()->end()
             ->end()
         ;

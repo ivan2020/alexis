@@ -1,0 +1,27 @@
+{% macro field(name, type, default, blank) %}
+    <{{ name }} type="{{ type }}"{% if blank %} optional="optional"{% endif %}{% if default %} default="{{ default }}"{% endif %} />
+{% endmacro %}
+
+{% macro string(name, default, blank) %}
+    {{ _self.field(name, 'string', default, blank) }}
+{% endmacro %}
+
+{% macro url(name, default, blank) %}
+    {{ _self.field(name, 'url', default, blank) }}
+{% endmacro %}
+
+{% macro date(name, default, blank) %}
+    {{ _self.field(name, 'date', default, blank) }}
+{% endmacro %}
+
+{% macro int(name, default, blank) %}
+    {{ _self.field(name, 'int', default, blank) }}
+{% endmacro %}
+
+{% macro choice(name, choices, default, blank) %}
+    <{{ name }} type="choice"{% if blank %} optional="optional"{% endif %}{% if default %} default="{{ default }}"{% endif %}>
+    {% for choice in choices %}
+        <choice value="{{ choice }}" />
+    {% endfor %}
+    </{{ name }}>
+{% endmacro %}

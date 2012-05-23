@@ -1,4 +1,11 @@
 Rithis\ProfilesBundle\Document\Profile:
+    constraints:
+        - Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique:
+            fields: email
+            groups: [credentials]
+        - Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique:
+            fields: nickname
+            groups: [credentials]
     properties:
         email:
             - NotBlank:

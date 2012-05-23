@@ -2,12 +2,16 @@ security:
     providers:
         loginza:
             id: security.user.provider.profiles
+        profiles:
+            mongodb:
+                class: Rithis\ProfilesBundle\Document\Profile
 
     access_control:
         # anonymous
-        - { path: ^/requests/new$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_profiler, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/sessions(/new)?(\.xml)?$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/profiles(/new)?(\.xml)?$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
         # not registered
@@ -25,6 +29,10 @@ security:
             logout:
                 path: /session
                 target: /
+            form_login:
+                provider: profiles
+                login_path: /sessions/new
+                check_path: /sessions
 
     role_hierarchy:
         ROLE_SPONSOR: ROLE_REGISTERED

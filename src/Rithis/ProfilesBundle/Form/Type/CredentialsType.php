@@ -4,8 +4,12 @@ namespace Rithis\ProfilesBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilder;
 
-class RegistrationType extends CredentialsType
+class CredentialsType extends ProfileType
 {
+    public function __construct()
+    {
+    }
+
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('email', 'email');
@@ -19,11 +23,19 @@ class RegistrationType extends CredentialsType
 
     protected function add(FormBuilder $builder, array $formOptions, $child, $type = null, array $options = array())
     {
-        $builder->add($child, $type, $options);
+        if (!is_string($child)) {
+            return parent::add($builder, $formOptions, $child, $type, $options);
+        }
+
+        $profileData = $formOptions['data']->toArray();
+
+        if (isset($profileData[$child]) && ($profileData[$child] instanceof \DateTime || strlen($profileData[$child]) > 0)) {
+            return parent::add($builder, $formOptions, $child, $type, $options);
+        }
     }
 
     public function getName()
     {
-        return 'registration';
+        return 'credentials';
     }
 }

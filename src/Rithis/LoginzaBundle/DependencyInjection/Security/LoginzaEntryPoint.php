@@ -26,6 +26,6 @@ class LoginzaEntryPoint implements AuthenticationEntryPointInterface
             $this->session->setFlash('error', $authException->getMessage());
         }
 
-        return new RedirectResponse($this->config['redirect_url']);
+        return new RedirectResponse($this->config['login_url']);
     }
 }
