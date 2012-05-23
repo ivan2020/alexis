@@ -304,6 +304,11 @@ class Profile implements UserInterface
         return in_array('ROLE_FREE', $this->roles);
     }
 
+    public function getAge()
+    {
+        return $this->getBirthday()->diff(new \DateTime())->y;
+    }
+
     public function getUsername()
     {
         return strlen($this->nickname) > 0 ? $this->nickname : reset($this->identities);

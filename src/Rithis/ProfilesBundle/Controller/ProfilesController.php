@@ -13,62 +13,63 @@ use FOS\Rest\Util\Codes;
 
 class ProfilesController extends Controller
 {
-    public function editProfileAction($hash)
+    public function editProfileAction()
     {
-        $user = $this->get('mongodb')->users->findOne(array("_id" => new \MongoID($hash)));
-
-        $birthday = new \DateTime();
-        $birthday->setTimestamp($user['birthday']->sec);
-        $user['birthday'] = $birthday;
-
-        $form = $this->createForm($this->get('profiles.form.type.profile'), $user);
-
         $view = View::create();
-        $view->setData(array('form' => $form, 'hash' => $hash));
+        $view->setData($this->getData());
         $view->setTemplate(new TemplateReference('RithisProfilesBundle', 'Profiles', 'editProfile'));
 
         return $view;
     }
 
-    public function getProfileAction($hash)
+    public function putProfileAction(Request $request)
     {
-        /*
-         * db.users.insert({'nickname': 'vslinko',
-         * 'avatar': '//s3-eu-west-1.amazonaws.com/rithis-alexis/hotels/4fb378e16eb7bddd10000000/714c5b4d587b6aa3916ca82c3fdd325b/original.png',
-         * 'birthday': new Date(1991, 01, 19), 'weight': 80, 'height': 170, sex: 'M', 'about_me': 'Vyacheslav Slinko',
-         * 'budget': 1000, 'roles': ['ROLE_SPONSOR']})
-         */
-        $user = $this->get('mongodb')->users->findOne(array("_id" => new \MongoID($hash)));
-
-        if (!$user) {
-            $this->createNotFoundException();
-        }
-
-        $user['age'] = date('Y') - date('Y', $user['birthday']->sec);
-        $user['role'] = in_array('ROLE_SPONSOR', $user['roles']) ? 'sponsor' : 'free';
-
-        $view = View::create();
-        $view->setData(array('user' => $user));
-        $view->setTemplate(new TemplateReference('RithisProfilesBundle', 'Profiles', 'getProfile'));
-
-        return $view;
-    }
-
-    public function putProfileAction(Request $request, $hash)
-    {
-        $form = $this->createForm($this->get('profiles.form.type.profile'));
+        $form = $this->getForm();
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            var_dump($form->getData());
-            die;
+            $this->get('doctrine.odm.mongodb.document_manager')->flush();
+            return RouteRedirectView::create('profile_edit_profile');
         }
 
         $view = View::create();
         $view->setData(array('form' => $form));
         $view->setStatusCode(Codes::HTTP_BAD_REQUEST);
-        $view->setTemplate(new TemplateReference('RithisProfilesBundle', 'Profiles', 'newProfiles'));
+        $view->setTemplate(new TemplateReference('RithisProfilesBundle', 'Profiles', 'editProfile'));
 
         return $view;
+    }
+
+    public function getProfileAction($id)
+    {
+        $user = $this->get('doctrine.odm.mongodb.document_manager')
+            ->getRepository('RithisProfilesBundle:Profile')
+            ->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException();
+        }
+
+        $view = View::create();
+        $view->setData(array('profile' => $user));
+        $view->setTemplate(new TemplateReference('RithisProfilesBundle', 'Profiles', 'getProfile'));
+
+        return $view;
+    }
+
+    private function getData()
+    {
+        if ($this->getRequest()->getRequestFormat() == 'html') {
+            $form = $this->getForm();
+            return array('form' => $form);
+        } else {
+            $user = $this->getUser();
+            return array('profile' => $user);
+        }
+    }
+
+    private function getForm()
+    {
+        return $this->createForm($this->get('profiles.form.type.profile'), $this->getUser());
     }
 }

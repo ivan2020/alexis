@@ -12,20 +12,20 @@ Rithis\ProfilesBundle\Document\Profile:
             - NotBlank: ~
             - MinLength:
                 limit: 5
-                groups: [credentials]
+                groups: [Default, credentials]
         firstName:
             - MinLength:
                 limit: 2
-                groups: [credentials]
+                groups: [Default, credentials]
         lastName:
             - MinLength:
                 limit: 2
-                groups: [credentials]
+                groups: [Default, credentials]
         avatar:
             - Url: ~
         birthday:
             - Date:
-                groups: [credentials]
+                groups: [Default, credentials]
         weight:
             - Type: int
         height:
@@ -33,11 +33,11 @@ Rithis\ProfilesBundle\Document\Profile:
         sex:
             - Choice:
                 choices: ['M', 'F']
-                groups: [credentials]
+                groups: [Default, credentials]
         about:
             - MinLength:
                 limit: 16
-                groups: [credentials]
+                groups: [Default, credentials]
         budget:
             - Type: int
             - Min: 500
