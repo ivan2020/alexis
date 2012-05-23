@@ -13,7 +13,7 @@ class CredentialsController extends Controller
     public function getCredentialsCheckAction()
     {
         if ($this->get('security.context')->isGranted('ROLE_REGISTERED')) {
-            return $this->redirect($this->generateUrl('_alexis_default'));
+            return $this->redirect($this->generateUrl('mainpage'));
         } else {
             return $this->redirect($this->generateUrl('profile_new_profile_credentials'));
         }
@@ -59,7 +59,7 @@ class CredentialsController extends Controller
 
             $this->get('doctrine.odm.mongodb.document_manager')->flush();
 
-            return $this->redirect($this->generateUrl('_alexis_default'));
+            return $this->redirect($this->generateUrl('mainpage'));
         }
 
         return $this->render('RithisProfilesBundle:Credentials:newCredentials.html.twig', array(

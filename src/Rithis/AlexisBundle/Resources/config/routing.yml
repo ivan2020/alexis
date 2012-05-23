@@ -3,8 +3,8 @@ _alexis_requests:
     resource: Rithis\AlexisBundle\Controller\RequestsController
     name_prefix: alexis_
 
-_alexis_default:
+mainpage:
     pattern: /
-    defaults: { _controller: RithisAlexisBundle:Default:default }
+    defaults: { _controller: RithisAlexisBundle:Default:index }
     requirements:
         _method: GET
