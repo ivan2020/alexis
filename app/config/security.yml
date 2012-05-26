@@ -32,7 +32,7 @@ security:
             form_login:
                 provider: profiles
                 login_path: /sessions/new
-                check_path: /sessions
+                check_path: /sessions/check
 
     role_hierarchy:
         ROLE_SPONSOR: ROLE_REGISTERED
