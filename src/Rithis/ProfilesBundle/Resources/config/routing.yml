@@ -8,3 +8,9 @@ _profile_credentials:
     resource: Rithis\ProfilesBundle\Controller\CredentialsController
     parent: _profile_profiles
     name_prefix: profile_
+
+_profile_email:
+    type: rest
+    resource: Rithis\ProfilesBundle\Controller\EmailController
+    parent: _profile_profiles
+    name_prefix: profile_

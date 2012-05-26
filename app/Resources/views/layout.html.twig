@@ -10,9 +10,12 @@
 <body>
 <div id="topbar">
     {% if is_granted('ROLE_USER') %}
-    {% render "RithisLoginzaBundle:Sessions:removeSession" %}
+        {% render "RithisLoginzaBundle:Sessions:removeSession" %}
+        {% if not is_granted("ROLE_EMAIL_CONFIRMED") %}
+            <a href="{{ path("profile_get_profile_email_confirmation", {id: app.user.id}) }}">Подтвердите email</a>
+        {% endif %}
     {% else %}
-    <a href="{{ path("loginza_new_sessions") }}">Войти</a>
+        <a href="{{ path("loginza_new_sessions") }}">Войти</a>
     {% endif %}
 </div>
 <div id="container">

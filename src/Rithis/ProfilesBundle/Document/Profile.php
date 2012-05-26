@@ -313,6 +313,11 @@ class Profile implements UserInterface
         return in_array('ROLE_FREE', $this->roles);
     }
 
+    public function isConfirmed()
+    {
+        return in_array('ROLE_EMAIL_CONFIRMED', $this->roles);
+    }
+
     public function getAge()
     {
         return $this->getBirthday()->diff(new \DateTime())->y;
