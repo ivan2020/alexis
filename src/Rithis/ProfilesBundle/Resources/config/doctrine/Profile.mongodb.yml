@@ -7,7 +7,7 @@ Rithis\ProfilesBundle\Document\Profile:
             type: string
         passwordHash:
             type: string
-        passwordSals:
+        passwordSalt:
             type: string
         nickname:
             type: string
