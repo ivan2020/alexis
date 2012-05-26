@@ -1,8 +1,8 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    {% for item in result %}
+
         <p>{{item.getResort().getCountry()}} {{item.getResort().getName()}} - {{item.price}} y.e.</p>
         <p><img width="150px" src="{{item.photo}}"></p>
-    {%endfor%}
+
 {%endblock%}

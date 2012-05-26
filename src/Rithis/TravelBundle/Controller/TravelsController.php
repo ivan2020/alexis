@@ -23,10 +23,27 @@ class TravelsController extends Controller
         return $view;
     }
 
-    public function getTravelAction($name)
+    public function getTravelsAction()
     {
-        $result = array_values(iterator_to_array($this->get('mongodb')->travel->find()));
+        $result=$this->get('doctrine.odm.mongodb.document_manager')
+            ->getRepository('RithisTravelBundle:Travel')->findAllTravels();
 
-        return $this->render('RithisTravelBundle:Default:index.html.twig', array('name' => $name));
+        $view = View::create();
+        $view->setData(array('result' => $result));
+        $view->setTemplate(new TemplateReference('RithisTravelBundle', 'Default', 'index'));
+
+        return $view;
+    }
+
+    public function getTravelsItemAction($id)
+    {
+        $result=$this->get('doctrine.odm.mongodb.document_manager')
+            ->getRepository('RithisTravelBundle:Travel')->findOneById($id);
+
+        $view = View::create();
+        $view->setData(array('item' => $result));
+        $view->setTemplate(new TemplateReference('RithisTravelBundle', 'Default', 'getTravelItem'));
+
+        return $view;
     }
 }

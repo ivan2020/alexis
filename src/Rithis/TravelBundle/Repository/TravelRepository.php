@@ -57,4 +57,14 @@ class TravelRepository extends DocumentRepository
         return $result;
     }
 
+    public function findAllTravels()
+    {
+        $result=$this->createQueryBuilder()
+            ->find()
+            ->getQuery()
+            ->execute();
+
+        return $result;
+    }
+
 }
