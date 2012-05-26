@@ -30,6 +30,12 @@ class LoadTravelData extends AbstractFixture implements OrderedFixtureInterface
 
         $travel = new Travel();
         $travel->setPrice(1000);
+        $travel->setResort($paris);
+        $travel->setPhoto('http://www.earth-tour.ru/images/stories/France/wer2.jpg');
+        $manager->persist($travel);
+
+        $travel = new Travel();
+        $travel->setPrice(1000);
         $travel->setResort($pattaya);
         $travel->setPhoto('http://www.paragontravel.ru/sites/default/files/tours/img_2006517_13423838.jpg');
         $manager->persist($travel);
