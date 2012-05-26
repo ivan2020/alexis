@@ -313,7 +313,7 @@ class Profile implements UserInterface
         return in_array('ROLE_FREE', $this->roles);
     }
 
-    public function isConfirmed()
+    public function isEmailConfirmed()
     {
         return in_array('ROLE_EMAIL_CONFIRMED', $this->roles);
     }

@@ -16,7 +16,7 @@ class EmailController extends Controller
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
         $user = $dm->getRepository('RithisProfilesBundle:Profile')->find($id);
 
-        if (!$user || $user->isConfirmed()) {
+        if (!$user || $user->isEmailConfirmed()) {
             throw $this->createNotFoundException();
         }
 

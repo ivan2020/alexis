@@ -11,7 +11,7 @@
 <div id="topbar">
     {% if is_granted('ROLE_USER') %}
         {% render "RithisLoginzaBundle:Sessions:removeSession" %}
-        {% if not is_granted("ROLE_EMAIL_CONFIRMED") %}
+        {% if not app.user.emailConfirmed %}
             <a href="{{ path("profile_get_profile_email_confirmation", {id: app.user.id}) }}">Подтвердите email</a>
         {% endif %}
     {% else %}
