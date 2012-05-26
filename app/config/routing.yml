@@ -1,3 +1,14 @@
+new_sessions:
+    pattern: /sessions/new
+    defaults: { _controller: RithisProfilesBundle:Sessions:newSessions }
+    requirements:
+        _method: GET
+
+post_sesions_check:
+    pattern: /sessions/check
+    requirements:
+        _method: POST
+
 _alexis:
     type: rest
     resource: "@RithisAlexisBundle/Resources/config/routing.yml"

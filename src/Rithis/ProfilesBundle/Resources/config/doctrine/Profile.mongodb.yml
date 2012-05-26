@@ -1,4 +1,5 @@
 Rithis\ProfilesBundle\Document\Profile:
+    repositoryClass: Rithis\ProfilesBundle\Repository\ProfileRepository
     fields:
         id:
             id: true

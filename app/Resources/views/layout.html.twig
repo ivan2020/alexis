@@ -12,7 +12,7 @@
     {% if is_granted('ROLE_USER') %}
     {% render "RithisLoginzaBundle:Sessions:removeSession" %}
     {% else %}
-    {% render "RithisLoginzaBundle:Sessions:newSessions" %}
+    <a href="{{ path("loginza_new_sessions") }}">Войти</a>
     {% endif %}
 </div>
 <div id="container">
