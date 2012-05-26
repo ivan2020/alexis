@@ -16,7 +16,8 @@ Rithis\ProfilesBundle\Document\Profile:
             - NotBlank:
                 groups: [credentials]
         nickname:
-            - NotBlank: ~
+            - NotBlank:
+                groups: [Default, credentials]
             - MinLength:
                 limit: 5
                 groups: [Default, credentials]
