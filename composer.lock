@@ -1,17 +1,17 @@
 {
-    "hash": "95f1d096e3c527ddec122f3acefa7eed",
+    "hash": "b56c539913d994ffc8f44b69a23ff8d1",
     "packages": [
-        {
-            "package": "doctrine/common",
-            "version": "dev-master",
-            "source-reference": "f8e2aadf388ab1e6b36263a73d5e314c477f96c7"
-        },
         {
             "package": "doctrine/common",
             "version": "dev-master",
             "source-reference": "f8e2aadf388ab1e6b36263a73d5e314c477f96c7",
             "alias-pretty-version": "2.3.x-dev",
             "alias-version": "2.3.9999999.9999999-dev"
+        },
+        {
+            "package": "doctrine/common",
+            "version": "dev-master",
+            "source-reference": "f8e2aadf388ab1e6b36263a73d5e314c477f96c7"
         },
         {
             "package": "doctrine/mongodb",
@@ -60,7 +60,7 @@
         },
         {
             "package": "pear-aws/sdk",
-            "version": "1.5.6"
+            "version": "1.5.6.1"
         },
         {
             "package": "sensio/framework-extra-bundle",
@@ -75,21 +75,14 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
+            "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "dev-master",
             "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f"
-        },
-        {
-            "package": "symfony/symfony",
-            "version": "dev-master",
-            "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/symfony",
-            "version": "dev-master",
-            "source-reference": "e0238071d4f07b46a07177066b6dd74ffb50fa5f",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "twig/twig",
