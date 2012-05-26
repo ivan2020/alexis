@@ -1,4 +1,4 @@
 {% for item in result %}
-    <p>{{item.place}} - {{item.price}} y.e.</p>
-    <p><img width="150px" src="{{item.img}}"></p>
+    <p>{{item.getResort().getCountry()}} {{item.getResort().getName()}} - {{item.price}} y.e.</p>
+    <p><img width="150px" src="{{item.photo}}"></p>
 {%endfor%}

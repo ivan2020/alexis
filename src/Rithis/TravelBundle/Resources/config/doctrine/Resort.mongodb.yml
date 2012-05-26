@@ -1,0 +1,11 @@
+Rithis\TravelBundle\Document\Resort:
+    fields:
+        id:
+            id: true
+            type: id
+        name:
+            type: string
+        country:
+            type: string
+        continent:
+            type: string

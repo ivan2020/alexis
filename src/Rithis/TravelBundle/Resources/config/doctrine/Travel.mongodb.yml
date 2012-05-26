@@ -1,0 +1,13 @@
+Rithis\TravelBundle\Document\Travel:
+    repositoryClass: Rithis\TravelBundle\Repository\TravelRepository
+    fields:
+        id:
+            id: true
+            type: id
+        price:
+            type: int
+        photo:
+            type: string
+    referenceOne:
+        resort:
+            targetDocument: Resort
