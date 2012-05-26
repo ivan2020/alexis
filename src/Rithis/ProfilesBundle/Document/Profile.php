@@ -48,7 +48,7 @@ class Profile implements UserInterface
     protected $avatar;
 
     /**
-     * @var \DateTime
+     * @var array
      */
     protected $birthday;
 
@@ -86,6 +86,16 @@ class Profile implements UserInterface
      * @var array
      */
     protected $roles = array();
+
+    /**
+     * @var object
+     */
+    private $preferences;
+
+    /**
+     * @var array
+     */
+//    protected $timerange;
 
     public $password;
     public $role;
@@ -171,7 +181,7 @@ class Profile implements UserInterface
         return $this->avatar;
     }
 
-    public function setBirthday(\DateTime $birthday)
+    public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
     }
@@ -315,7 +325,7 @@ class Profile implements UserInterface
 
     public function getAge()
     {
-        return $this->getBirthday()->diff(new \DateTime())->y;
+        return $this->getBirthday(); //->diff(new \DateTime())->y;
     }
 
     public function getUsername()
@@ -335,5 +345,31 @@ class Profile implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function setPreferences(Preferences $preferences)
+    {
+        $this->preferences = $preferences;
+    }
+
+    public function getPreferences()
+    {
+        return $this->preferences;
+    }
+
+    /**
+     * @param array $timerange
+     */
+    public function setTimerange($timerange)
+    {
+        $this->timerange = $timerange;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTimerange()
+    {
+        return $this->timerange;
     }
 }

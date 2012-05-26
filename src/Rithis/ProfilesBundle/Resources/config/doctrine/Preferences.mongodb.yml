@@ -1,0 +1,18 @@
+Rithis\ProfilesBundle\Document\Preferences:
+    type: embeddedDocument
+    fields:
+        sex:
+            type: collection
+        weight:
+            type: int
+        height:
+            type: int
+        boobsSize:
+            type: int
+        hairColor:
+            type: string
+        hasPhoto:
+            type: boolean
+    embedOne:
+        ageRange:
+            targetDocument: AgeRange

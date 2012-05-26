@@ -26,9 +26,7 @@ class ProfileType extends AbstractType
 
         $this->add($builder, $options, 'avatar');
 
-        $this->add($builder, $options, 'birthday', 'birthday', array(
-            'format' => 'dd MMMM yyyy',
-        ));
+        $this->add($builder, $options, 'birthday', new BirthdayType());
 
         $this->add($builder, $options, 'weight', 'integer');
 
@@ -44,10 +42,12 @@ class ProfileType extends AbstractType
             $this->add($builder, $options, 'budget', 'integer');
         }
 
+        $this->add($builder, $options, 'preferences', new PreferencesType());
+
+//        $this->add($builder, $options, 'timerange', new TimeRangeType());
+
         /*
-        $builder->add('preferences', new PreferencesType());
         $builder->add('photos', 'text');
-        $builder->add('timerange', new TimeRangeType());
         $builder->add('travel', 'choice', array('choice_list' => $this->travelChoiceList));
         */
     }

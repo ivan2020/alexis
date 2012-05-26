@@ -1,0 +1,7 @@
+Rithis\ProfilesBundle\Document\AgeRange:
+    type: embeddedDocument
+    fields:
+        ageFrom:
+            type: int
+        ageTo:
+            type: int
