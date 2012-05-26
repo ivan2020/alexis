@@ -31,9 +31,9 @@ Rithis\ProfilesBundle\Document\Profile:
                 groups: [Default, credentials]
         avatar:
             - Url: ~
-        birthday:
-            - Date:
-                groups: [Default, credentials]
+#        birthday:
+#            - Date:
+#                groups: [Default, credentials]
         weight:
             - Type: int
         height:

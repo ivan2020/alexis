@@ -19,7 +19,7 @@ Rithis\ProfilesBundle\Document\Profile:
         avatar:
             type: string
         birthday:
-            type: date
+            type: collection
         weight:
             type: int
         height:
@@ -34,6 +34,9 @@ Rithis\ProfilesBundle\Document\Profile:
             type: collection
         roles:
             type: collection
+    embedOne:
+        preferences:
+            targetDocument: Preferences
         #preferences:
         #photos:
         #timerange:

@@ -15,6 +15,6 @@ class TimeRangeType extends AbstractType
 
     public function getName()
     {
-        return 'im';
+        return 'timerange';
     }
 }
